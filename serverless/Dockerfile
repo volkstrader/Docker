@@ -22,5 +22,7 @@ RUN export CLOUD_SDK_REPO="cloud-sdk-$(sed -n 's/VERSION=\"\S* (\(\w*\))\"/\1/p'
 
 # install node apps: reacts, firebase, serverless
 USER node
-RUN npm install -g create-react-app && npm install -g firebase-tools && npm install -g serverless && \
-    sls config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY
+RUN npm install -g create-react-app && npm install -g firebase-tools && npm install -g serverless
+
+USER root
+RUN  sls config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY
