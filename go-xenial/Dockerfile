@@ -1,18 +1,13 @@
-FROM node:carbon
+FROM ubuntu:xenial
 
 # OS: Ubuntu
-# Applications: node:carbon, golang 1.10.2
-
-# update node environment and install node apps
-USER node
-RUN mkdir /home/node/.npm-global
-ENV PATH=/home/node/.npm-global/bin:$PATH
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-RUN npm i npm@latest -g && npm install -g rimraf
+# Applications: node, golang 1.10.2
 
 # Copy from https://github.com/docker-library/golang/blob/329b6672949337c4469351b2e8b8575459a75c7f/1.10/stretch/Dockerfile of https://hub.docker.com/_/golang/ 
 USER root
 RUN apt-get update && apt-get install -y --no-install-recommends \
+		wget \
+		curl \
 		g++ \
 		gcc \
 		libc6-dev \
@@ -38,7 +33,7 @@ RUN set -eux; \
 	esac; \
 	\
 	url="https://golang.org/dl/go${GOLANG_VERSION}.${goRelArch}.tar.gz"; \
-	wget -O go.tgz "$url"; \
+	wget --no-check-certificate -O go.tgz "$url"; \
 	echo "${goRelSha256} *go.tgz" | sha256sum -c -; \
 	tar -C /usr/local -xzf go.tgz; \
 	rm go.tgz; \
