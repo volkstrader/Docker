@@ -1,4 +1,4 @@
-FROM go-node:latest
+FROM go-bionic:1.10.3
 
 # Install Google Cloud SDK
 RUN export CLOUD_SDK_REPO="cloud-sdk-$(sed -n 's/VERSION=\"\S* (\(\w*\))\"/\1/p' /etc/os-release)" && \
