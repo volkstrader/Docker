@@ -1,0 +1,1 @@
+docker build -t gst-go-xenial:1.8.3 .

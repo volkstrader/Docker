@@ -1,0 +1,1 @@
+docker build --no-cache -t go-xenial:1.10.2 .

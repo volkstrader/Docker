@@ -1,0 +1,1 @@
+docker build --no-cache -t queue-processor-node:8.11.2 .
