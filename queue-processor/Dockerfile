@@ -62,7 +62,7 @@ RUN set -ex \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz
 
 # setup dev volume mounting point and install node environment and install node apps
-RUN apt-get update && apt-get install -y vim python git && \
+RUN apt-get update && apt-get install -y vim python git ca-certificates iputils-ping && \
     mkdir /app && mkdir /efs && cd /usr/local/bin && \
     ln -s /go/src/bitbucket.org/bitcentral/iris-conditioning-ise/cmd/upload/upload upload && \
     ln -s /go/src/bitbucket.org/bitcentral/iris-conditioning-ise/cmd/parse-m3u8/parse-m3u8 parse-m3u8 && \
@@ -73,6 +73,7 @@ USER node
 RUN mkdir /home/node/.npm-global
 ENV PATH=/home/node/.npm-global/bin:$PATH
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-RUN npm i npm@latest -g && npm install -g rimraf && npm install -g tsc && npm install -g jest
+RUN npm i npm@latest -g && npm install -g rimraf && npm install -g typescript && npm install -g jest
 
+USER root
 WORKDIR /app
