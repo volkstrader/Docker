@@ -13,7 +13,7 @@ USER root
 RUN curl -O https://bootstrap.pypa.io/get-pip.py | /bin/bash
 RUN apt-get install -y python-dev groff
 RUN python get-pip.py --user && \
-    pip install awscli --upgrade --user 
-
+    pip install awscli --upgrade --user && \
+    rm get-pip.py
 
 RUN  npm install -g serverless && sls config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY
