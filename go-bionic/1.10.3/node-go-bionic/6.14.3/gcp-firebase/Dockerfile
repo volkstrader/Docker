@@ -9,4 +9,4 @@ RUN export CLOUD_SDK_REPO="cloud-sdk-$(sed -n 's/VERSION_CODENAME=\([w]*\)/\1/p'
     apt-get update && apt-get install -y google-cloud-sdk google-cloud-sdk-app-engine-go
 
 # install node firebase and cloud functions
-RUN npm install -g firebase-tools -g serverless-google-cloudfunctions -g typescript
+RUN npm install -g firebase-tools -g serverless-google-cloudfunctions -g typescript -g jest
